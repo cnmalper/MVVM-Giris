@@ -11,18 +11,17 @@ import RxSwift
 class AnasayfaViewModel {
     
     var resultVM = BehaviorSubject<String>(value: "0")
+    var mathRepo = MathRepository()
+    
+    init() {
+        resultVM = mathRepo.resultVM
+    }
     
     func topla(number1: String, number2: String){
-        if let number1Int = Int(number1), let number2Int = Int(number2) {
-            let result = number1Int + number2Int
-            resultVM.onNext(String(result)) // (1) tetikleme
-        }
+        mathRepo.topla(number1: number1, number2: number2)
     }
     
     func carpma(number1: String, number2: String){
-        if let number1Int = Int(number1), let number2Int = Int(number2) {
-            let result = number1Int * number2Int
-            resultVM.onNext(String(result)) // (1) tetikleme
-        }
+        mathRepo.carpma(number1: number1, number2: number2)
     }
 }
